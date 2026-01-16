@@ -15,3 +15,48 @@ GET {{baseUrl}}/conceitos-manual/
 ### ConceitosAutomaticoControllerHome
 # @name ConceitosAutomaticoControllerHome
 GET {{baseUrl}}/conceitos-automatico/
+
+### RecadosControllerFindAll
+# @name RecadosControllerFindAll    
+GET {{baseUrl}}/recados/
+?limit=300
+&offset=200
+
+### RecadosControllerCreate
+# @name RecadosControllerCreate
+POST {{baseUrl}}/recados/
+Content-Type: application/json
+
+{
+  "title": "Novo Recado",
+  "description": "Descrição do novo recado"
+}
+
+### RecadosControllerFindOne
+# @name RecadosControllerFindOne
+GET {{baseUrl}}/recados/256/max/
+
+### RecadosControllerUpdate     
+# @name RecadosControllerUpdate
+PUT {{baseUrl}}/recados/15
+Content-Type: application/json
+
+{
+  "title": "Novo Recado",
+  "description": "Descrição do novo recado"
+}
+
+### RecadosControllerPatch
+# @name RecadosControllerPatch
+PATCH {{baseUrl}}/recados/125
+Content-Type: application/json
+
+{
+  "title": "Novo Recado",
+  "description": "Descrição do novo recado"
+}
+
+### RecadosControllerDelete
+# @name RecadosControllerDelete
+DELETE {{baseUrl}}/recados/125
+Content-Type: application/json
