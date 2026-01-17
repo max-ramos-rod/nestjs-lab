@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Recado } from './entities/recado.entity';
+import { CreateRecadoDto } from './dto/create-recado.dto';
+import { UpdateRecadoDto } from './dto/update-recado.dto';
 
 @Injectable()
 export class RecadosService {
@@ -21,34 +23,32 @@ export class RecadosService {
     return this.recados;
   }
   findeOne(id: string) {
-    const recado = this.recados.find((item) => item.id === Number(id));
+    const recado = this.recados.find(item => item.id === Number(id));
     if (recado) return recado;
     this.throwNotFoundException();
   }
-  create(body: any) {
+  create(createRecadoDto: CreateRecadoDto): Recado {
     this.lastId++;
     const id = this.lastId;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const novoRecado = {
+    const novoRecado: Recado = {
       id,
-      ...body,
+      ...createRecadoDto,
+      lido: false,
+      data: new Date(),
     };
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     this.recados.push(novoRecado);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return novoRecado;
   }
-  update(id: string, body: any): any {
-    const index = this.recados.findIndex((item) => item.id === Number(id));
+  update(id: string, updateRecadoDto: UpdateRecadoDto): Recado {
+    const index = this.recados.findIndex(item => item.id === Number(id));
 
     if (index < 0) {
       this.throwNotFoundException();
     }
     const recadoSelecionado = this.recados[index];
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     this.recados[index] = {
       ...recadoSelecionado,
-      ...body,
+      ...updateRecadoDto,
     };
     return this.recados[index];
   }
@@ -59,7 +59,7 @@ export class RecadosService {
     };
   }
   remove(id: string) {
-    const index = this.recados.findIndex((item) => item.id === Number(id));
+    const index = this.recados.findIndex(item => item.id === Number(id));
     if (index < 0) {
       this.throwNotFoundException();
     }

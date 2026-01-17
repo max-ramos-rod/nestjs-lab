@@ -28,11 +28,9 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "E agora, quem poderá me defender?",
-  "de": "Davi",
-  "para": "Golias",
-  "lido": false,
-  "data": "2026-01-17T00:54:47.261Z"
+  "texto": "Toma essa tesouro!",
+  "de": "Chaves",
+  "para": "Kiko"
 }
 
 ### RecadosControllerFindOne
@@ -45,11 +43,7 @@ PUT {{baseUrl}}/recados/3
 Content-Type: application/json
 
   {
-    "texto": "Te pego no flagra!",
-    "de": "Alice",
-    "para": "Bob",
-    "lido": false,
-    "data": "2026-01-17T02:08:40.895Z"
+    "lido": true
   }
 
 ### RecadosControllerPatch

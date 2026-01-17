@@ -25,9 +25,8 @@ Este repositório serve como:
 - **Validation Pipes**
 - **Guards, Interceptors e Middlewares**
 - **Arquitetura modular**
-- **Testes (unit e e2e)** *em breve*
-- **Docker Compose** *opcional*
-
+- **Testes (unit e e2e)** _em breve_
+- **Docker Compose** _opcional_
 
 ## ▶️ Como rodar o projeto
 
@@ -37,3 +36,4 @@ npm install
 
 # Rodar ambiente de desenvolvimento
 npm run start:dev
+```
