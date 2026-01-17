@@ -7,49 +7,40 @@ import {
   Put,
   Patch,
   Delete,
-  Query,
 } from '@nestjs/common';
+import { RecadosService } from './recados.service';
 
 @Controller('recados')
 export class RecadosController {
+  constructor(private readonly recadosService: RecadosService) {}
   // Encontrar todos os recados
   @Get()
-  findAll(@Query() query: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { limit = 10, offset = 0 } = query;
-    return (
-      'Retornando todos os recados - ' + `limit: ${limit} - offset: ${offset}`
-    );
+  findAll() {
+    return this.recadosService.findAll();
   }
   // Encontrar um recado pelo ID
-  @Get(':id/:dinamico')
-  findOne(@Param('id') id: string, @Param('dinamico') dinamico: string) {
-    return `Id do recado ${id} - dinamico adicionado: ${dinamico}`;
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.recadosService.findeOne(id);
   }
   @Post()
   create(@Body() body: any) {
     console.log(body);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return body;
+    return this.recadosService.create(body);
   }
   @Put(':id')
   update(@Param('id') id: string, @Body() body: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return {
-      id,
-      ...body,
-    };
+    return this.recadosService.update(id, body);
   }
   @Patch(':id')
   partialUpdate(@Param('id') id: string, @Body() body: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return {
-      id,
-      ...body,
-    };
+    return this.recadosService.partialUpdate(id, body);
   }
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `Recado ${id} removido com sucesso!`;
+    return this.recadosService.remove(id);
   }
 }

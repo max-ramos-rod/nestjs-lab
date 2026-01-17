@@ -28,23 +28,29 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "title": "Novo Recado",
-  "description": "Descrição do novo recado"
+  "texto": "E agora, quem poderá me defender?",
+  "de": "Davi",
+  "para": "Golias",
+  "lido": false,
+  "data": "2026-01-17T00:54:47.261Z"
 }
 
 ### RecadosControllerFindOne
 # @name RecadosControllerFindOne
-GET {{baseUrl}}/recados/256/max/
+GET {{baseUrl}}/recados/1
 
 ### RecadosControllerUpdate     
 # @name RecadosControllerUpdate
-PUT {{baseUrl}}/recados/15
+PUT {{baseUrl}}/recados/3
 Content-Type: application/json
 
-{
-  "title": "Novo Recado",
-  "description": "Descrição do novo recado"
-}
+  {
+    "texto": "Te pego no flagra!",
+    "de": "Alice",
+    "para": "Bob",
+    "lido": false,
+    "data": "2026-01-17T02:08:40.895Z"
+  }
 
 ### RecadosControllerPatch
 # @name RecadosControllerPatch
@@ -58,5 +64,5 @@ Content-Type: application/json
 
 ### RecadosControllerDelete
 # @name RecadosControllerDelete
-DELETE {{baseUrl}}/recados/125
+DELETE {{baseUrl}}/recados/6
 Content-Type: application/json
