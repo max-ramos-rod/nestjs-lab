@@ -28,18 +28,18 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "Toma essa tesouro!",
-  "de": "Chaves",
-  "para": "Kiko"
+  "texto": "Zé num aguenta nem carregar o martelo.",
+  "de": "Thor",
+  "para": "Stark"
 }
 
 ### RecadosControllerFindOne
 # @name RecadosControllerFindOne
-GET {{baseUrl}}/recados/1
+GET {{baseUrl}}/recados/2
 
 ### RecadosControllerUpdate     
 # @name RecadosControllerUpdate
-PUT {{baseUrl}}/recados/3
+PUT {{baseUrl}}/recados/3/
 Content-Type: application/json
 
   {
@@ -48,15 +48,13 @@ Content-Type: application/json
 
 ### RecadosControllerPatch
 # @name RecadosControllerPatch
-PATCH {{baseUrl}}/recados/125
+PATCH {{baseUrl}}/recados/3
 Content-Type: application/json
-
 {
-  "title": "Novo Recado",
-  "description": "Descrição do novo recado"
+  "texto": "Texto atualizado via PATCH"
 }
 
 ### RecadosControllerDelete
 # @name RecadosControllerDelete
-DELETE {{baseUrl}}/recados/6
+DELETE {{baseUrl}}/recados/2
 Content-Type: application/json

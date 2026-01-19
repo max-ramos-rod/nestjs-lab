@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, Post, Put, Patch, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Patch,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
@@ -22,32 +32,31 @@ export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   // Encontrar todos os recados
   @Get()
-  findAll() {
-    return this.recadosService.findAll();
+  async findAll() {
+    return await this.recadosService.findAll();
   }
   // Encontrar um recado pelo ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.recadosService.findeOne(id);
+  async findOne(@Param('id') id: number) {
+    return await this.recadosService.findeOne(id);
   }
   @Post()
-  create(@Body() createRecadoDto: CreateRecadoDto): CreateRecadoDto {
-    return this.recadosService.create(createRecadoDto);
+  async create(@Body() createRecadoDto: CreateRecadoDto) {
+    return await this.recadosService.create(createRecadoDto);
   }
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateRecadoDto: UpdateRecadoDto): UpdateRecadoDto {
-    return this.recadosService.update(id, updateRecadoDto);
+  async update(@Param('id') id: number, @Body() updateRecadoDto: UpdateRecadoDto) {
+    return await this.recadosService.update(id, updateRecadoDto);
   }
   @Patch(':id')
-  partialUpdate(
-    @Param('id') id: string,
+  async partialUpdate(
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateRecadoDto: UpdateRecadoDto,
-  ): UpdateRecadoDto {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return this.recadosService.partialUpdate(id, updateRecadoDto);
+  ) {
+    return await this.recadosService.partialUpdate(id, updateRecadoDto);
   }
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.recadosService.remove(id);
   }
 }
