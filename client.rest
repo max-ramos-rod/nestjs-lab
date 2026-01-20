@@ -27,7 +27,7 @@ GET {{baseUrl}}/recados/
 
 ### RecadosControllerFindOne
 # @name RecadosControllerFindOne
-GET {{baseUrl}}/recados/13/
+GET {{baseUrl}}/recados/-1
 
 ### RecadosControllerCreate
 # @name RecadosControllerCreate
@@ -35,18 +35,18 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "Serio zé",
+  "texto": "Ola amigão.",
   "deId": 15,
   "paraId": 20
 }
 
 ### RecadosControllerUpdate     
 # @name RecadosControllerUpdate
-PUT {{baseUrl}}/recados/14/
+PUT {{baseUrl}}/recados/-15/
 Content-Type: application/json
 
 {
-  "texto": "Recado atualizado via PUT",
+  "texto": "Cheguei, bora.",
   "lido": true
 }
 
