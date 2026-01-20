@@ -16,11 +16,18 @@ GET {{baseUrl}}/conceitos-manual/
 # @name ConceitosAutomaticoControllerHome
 GET {{baseUrl}}/conceitos-automatico/
 
+###
+### RECADOS CONTROLLER
+###
 ### RecadosControllerFindAll
 # @name RecadosControllerFindAll    
 GET {{baseUrl}}/recados/
-?limit=300
-&offset=200
+?limit=10
+&offset=0
+
+### RecadosControllerFindOne
+# @name RecadosControllerFindOne
+GET {{baseUrl}}/recados/13/
 
 ### RecadosControllerCreate
 # @name RecadosControllerCreate
@@ -28,33 +35,80 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "Zé num aguenta nem carregar o martelo.",
-  "de": "Thor",
-  "para": "Stark"
+  "texto": "Serio zé",
+  "deId": 15,
+  "paraId": 20
 }
-
-### RecadosControllerFindOne
-# @name RecadosControllerFindOne
-GET {{baseUrl}}/recados/2
 
 ### RecadosControllerUpdate     
 # @name RecadosControllerUpdate
-PUT {{baseUrl}}/recados/3/
+PUT {{baseUrl}}/recados/14/
 Content-Type: application/json
 
-  {
-    "lido": true
-  }
+{
+  "texto": "Recado atualizado via PUT",
+  "lido": true
+}
 
 ### RecadosControllerPatch
 # @name RecadosControllerPatch
-PATCH {{baseUrl}}/recados/3
+PATCH {{baseUrl}}/recados/14/
 Content-Type: application/json
+
 {
-  "texto": "Texto atualizado via PATCH"
+  "texto": "Fala cosplay de pirata."
 }
 
 ### RecadosControllerDelete
 # @name RecadosControllerDelete
 DELETE {{baseUrl}}/recados/2
+Content-Type: application/json
+
+###
+### PESSOAS CONTROLLER
+###
+### PessoasControllerFindAll
+# @name PessoasControllerFindAll    
+GET {{baseUrl}}/pessoas/
+?limit=300
+&offset=200
+
+### PessoasControllerFindOne
+# @name PessoasControllerFindOne
+GET {{baseUrl}}/pessoas/2/
+
+### PessoasControllerCreate
+# @name PessoasControllerCreate
+POST {{baseUrl}}/pessoas/
+Content-Type: application/json
+
+{
+  "email": "zoro@gmail.com",
+  "password": "nossa_senha123",
+  "nome": "Hohonono zoro"
+}
+
+
+### PessoasControllerUpdate     
+# @name PessoasControllerUpdate
+PUT {{baseUrl}}/pessoas/18/
+Content-Type: application/json
+
+{
+  "nome": "Os piratas",
+  "passwordHash": "nova_senha456"
+}
+
+### PessoasControllerPatch
+# @name PessoasControllerPatch
+PATCH {{baseUrl}}/pessoas/20/
+Content-Type: application/json
+
+{
+  "nome": "Cosplay de pirata."
+}
+
+### PessoasControllerDelete
+# @name PessoasControllerDelete
+DELETE {{baseUrl}}/pessoas/18
 Content-Type: application/json

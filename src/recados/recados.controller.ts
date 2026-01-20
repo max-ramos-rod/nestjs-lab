@@ -8,10 +8,12 @@ import {
   Patch,
   Delete,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
-import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
+import { PaginationDto } from 'src/common/pagination.dto';
+import { CreateRecadoDto } from './dto/create-recado.dto';
 
 // CRUD - Create, Read, Update, Delete
 // Create - POST -> Criar um recado
@@ -32,12 +34,13 @@ export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   // Encontrar todos os recados
   @Get()
-  async findAll() {
-    return await this.recadosService.findAll();
+  async findAll(@Query() paginationDto: PaginationDto) {
+    const recados = await this.recadosService.findAll(paginationDto);
+    return recados;
   }
   // Encontrar um recado pelo ID
   @Get(':id')
-  async findOne(@Param('id') id: number) {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     return await this.recadosService.findeOne(id);
   }
   @Post()
@@ -45,7 +48,7 @@ export class RecadosController {
     return await this.recadosService.create(createRecadoDto);
   }
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateRecadoDto: UpdateRecadoDto) {
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateRecadoDto: UpdateRecadoDto) {
     return await this.recadosService.update(id, updateRecadoDto);
   }
   @Patch(':id')
@@ -56,7 +59,7 @@ export class RecadosController {
     return await this.recadosService.partialUpdate(id, updateRecadoDto);
   }
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.recadosService.remove(id);
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return await this.recadosService.remove(id);
   }
 }
