@@ -24,10 +24,10 @@ GET {{baseUrl}}/conceitos-automatico/
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-
+Authorization: Bearer 123456.
 ### RecadosControllerFindOne
 # @name RecadosControllerFindOne
-GET {{baseUrl}}/recados/-1
+GET {{baseUrl}}/recados/1
 
 ### RecadosControllerCreate
 # @name RecadosControllerCreate
@@ -42,7 +42,7 @@ Content-Type: application/json
 
 ### RecadosControllerUpdate     
 # @name RecadosControllerUpdate
-PUT {{baseUrl}}/recados/-15/
+PUT {{baseUrl}}/recados/15/
 Content-Type: application/json
 
 {

@@ -3,7 +3,6 @@ import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from
 @Injectable()
 export class ParseIntIdPipe implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
-    console.log('ParseIntIdPipe - transform chamado com valor:', value, 'e metadata:', metadata);
     if (metadata.type !== 'param' || metadata.data !== 'id') {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return value;

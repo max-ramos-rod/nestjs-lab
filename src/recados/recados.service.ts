@@ -39,7 +39,7 @@ export class RecadosService {
     });
     return recados;
   }
-  async findeOne(id: number) {
+  async findOne(id: number) {
     const recado = await this.recadoRepository.findOne({
       where: {
         id: Number(id),
@@ -100,7 +100,7 @@ export class RecadosService {
   }
 
   async partialUpdate(id: number, updateRecadoDto: UpdateRecadoDto) {
-    const recado = await this.findeOne(id);
+    const recado = await this.findOne(id);
 
     if (!recado) {
       throw new NotFoundException(`Recado ${id} não encontrado`);

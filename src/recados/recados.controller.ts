@@ -9,11 +9,13 @@ import {
   Delete,
   ParseIntPipe,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { CreateRecadoDto } from './dto/create-recado.dto';
+import { AuthTokenInterceptor } from 'src/interceptors/auth-token.interceptor';
 
 // CRUD - Create, Read, Update, Delete
 // Create - POST -> Criar um recado
@@ -29,6 +31,7 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 // Transformar dados de entrada em objetos fortemente tipados e transformar tipos
 // ou seja, validar, transformar e transportar dados entre processos
 
+@UseInterceptors(AuthTokenInterceptor)
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
@@ -41,7 +44,7 @@ export class RecadosController {
   // Encontrar um recado pelo ID
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
-    return await this.recadosService.findeOne(id);
+    return await this.recadosService.findOne(id);
   }
   @Post()
   async create(@Body() createRecadoDto: CreateRecadoDto) {
