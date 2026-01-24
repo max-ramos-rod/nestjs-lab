@@ -9,14 +9,12 @@ import {
   Delete,
   ParseIntPipe,
   Query,
-  UseInterceptors,
   Req,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { CreateRecadoDto } from './dto/create-recado.dto';
-import { AuthTokenInterceptor } from 'src/interceptors/auth-token.interceptor';
 import express from 'express';
 
 // CRUD - Create, Read, Update, Delete
@@ -33,7 +31,6 @@ import express from 'express';
 // Transformar dados de entrada em objetos fortemente tipados e transformar tipos
 // ou seja, validar, transformar e transportar dados entre processos
 
-@UseInterceptors(AuthTokenInterceptor)
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
@@ -43,8 +40,7 @@ export class RecadosController {
     console.log('RecadosController', req['user']);
     const recados = await this.recadosService.findAll(paginationDto);
     console.log(recados[0].id);
-    throw new Error('RecadosController: Requisição errada.');
-    //return recados;
+    return recados;
   }
   // Encontrar um recado pelo ID
   @Get(':id')

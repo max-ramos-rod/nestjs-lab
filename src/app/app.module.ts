@@ -1,6 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConceitosManualModule } from 'src/conceitos-manual/conceitos-manual.module';
 import { ConceitosAutomaticoModule } from 'src/conceitos-automatico/conceitos-automatico.module';
 import { RecadosModule } from 'src/recados/recados.module';
@@ -8,8 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PessoasModule } from 'src/pessoas/pessoas.module';
 import { SimpleMiddleware } from 'src/middlewares/simple.middleware';
 import { OtherMiddleware } from 'src/middlewares/other.middleware';
-import { APP_FILTER } from '@nestjs/core';
-import { ErrorExceptionFilter } from 'src/common/filters/error-excepiton.filter';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -29,13 +27,7 @@ import { ErrorExceptionFilter } from 'src/common/filters/error-excepiton.filter'
     PessoasModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_FILTER,
-      useClass: ErrorExceptionFilter,
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
