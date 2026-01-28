@@ -6,6 +6,6 @@ export class OtherMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     console.log('OtherMiddleware: Start.');
     next();
-    console.log('OtherMiddleware: Finishid.');
+    console.log('OtherMiddleware: Finish.');
   }
 }

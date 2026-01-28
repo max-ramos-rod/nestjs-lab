@@ -9,13 +9,12 @@ import {
   Delete,
   ParseIntPipe,
   Query,
-  Req,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { CreateRecadoDto } from './dto/create-recado.dto';
-import express from 'express';
+import { ReqDataParam } from 'src/common/params/reqdata-param.decorator';
 
 // CRUD - Create, Read, Update, Delete
 // Create - POST -> Criar um recado
@@ -36,8 +35,8 @@ export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   // Encontrar todos os recados
   @Get()
-  async findAll(@Query() paginationDto: PaginationDto, @Req() req: express.Request) {
-    console.log('RecadosController', req['user']);
+  async findAll(@Query() paginationDto: PaginationDto, @ReqDataParam('headers') data) {
+    console.log('RecadosController', data);
     const recados = await this.recadosService.findAll(paginationDto);
     console.log(recados[0].id);
     return recados;

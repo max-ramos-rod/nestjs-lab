@@ -26,7 +26,7 @@ GET {{baseUrl}}/recados/
 &offset=0
 ### RecadosControllerFindOne
 # @name RecadosControllerFindOne
-GET {{baseUrl}}/recados/1
+GET {{baseUrl}}/recados/20
 
 ### RecadosControllerCreate
 # @name RecadosControllerCreate
